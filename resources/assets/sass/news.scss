@@ -1,0 +1,88 @@
+@import 'definitions';
+
+#gg-weekly-news-container {
+    display: flex;
+    flex-flow: row wrap;
+    font-size: 0.9em;
+
+    .day-container {
+        flex: 1 18.1%;
+        margin-right: 2px;
+
+        .day-title {
+            background-color: $tertiaryBgColor;
+            font-weight: bold;
+            padding: 0.5em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .day-news {
+            display: block;
+            height: 700px;
+            max-height: 700px;
+            overflow: auto;
+
+            .news-item {
+                margin-bottom: 1px;
+                padding: 0.5em;
+                padding-bottom: 1em;
+                padding-top: 1em;
+
+                +.microsoft {
+                    background-color: $microsoftBgColor;
+                    border-left: 2px solid $microsoftBorderColor;
+
+                    .news-tags, .news-username {
+                        color: $microsoftColor;
+                    }
+                }
+
+                +.nintendo {
+                    background-color: $nintendoBgColor;
+                    border-left: 2px solid $nintendoBorderColor;
+                    .news-tags, .news-username {
+                        color: $nintendoColor;
+                    }
+                }
+
+                +.sony {
+                    background-color: $sonyBgColor;
+                    border-left: 2px solid $sonyBorderColor;
+                    .news-tags, .news-username {
+                        color: $sonyColor;
+                    }
+                }
+
+                +.pc {
+                    background-color: $pcBgColor;
+                    border-left: 2px solid $pcBorderColor;
+                    .news-tags, .news-username {
+                        color: $pcColor;
+                    }
+                }
+
+                +.big-news {
+                    background-color: $bigNewsBgColor;
+                    .news-tags, .news-username {
+                        color: $bigNewsColor;
+                    }
+                }
+
+                .news-description {
+                    font-size: 0.8em;
+                }
+
+                .news-tags {
+                    font-size: 0.7em;
+                    word-spacing: 0.8em;
+                }
+
+                .news-username {
+                    font-size: 0.7em;
+                }
+            }
+        }
+    }
+}
+

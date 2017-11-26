@@ -1,0 +1,88 @@
+@import 'definitions';
+
+#content table.table
+{
+    tr:hover
+    {
+        td
+        {
+            background-color: $mainBgColor !important;
+        }
+    }
+
+    th, td
+    {
+        border: none;
+        font-size: 0.9em;
+
+        &.likes, &.replies, &.unread, &.author, &.last-post
+        {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        &.topic
+        {
+            .pages, .mod-tools
+            {
+                font-size: 0.9em;
+            }
+
+            .mod-tools
+            {
+                float: right;
+            }
+        }
+        &.likes, &.replies, &.unread
+        {
+            width: 5em;
+        }
+        &.author
+        {
+            width: 10em;
+        }
+        &.last-post
+        {
+            font-size: 0.8em;
+            width: 8em;
+        }
+    }
+
+    &.table-striped
+    {
+        thead
+        {
+            th
+            {
+                background-color: $tableHeadBgColor;
+            }
+        }
+
+        tbody
+        {
+            tr:nth-child(odd)
+            {
+                th, td
+                {
+                    background-color: $secondaryBgColor;
+                    &.replies, &.author
+                    {
+                        background-color: $tertiaryBgColor;
+                    }
+                }
+            }
+
+            tr:nth-child(even)
+            {
+                th, td
+                {
+                    background-color: $tertiaryBgColor;
+                    &.replies, &.author
+                    {
+                        background-color: $mainBgColor;
+                    }
+                }
+            }
+        }
+    }
+}
