@@ -7,7 +7,6 @@ use Auth;
 
 class ForumTopic extends Model
 {
-
     /**
      * The database table used by the model.
      *
@@ -66,7 +65,7 @@ class ForumTopic extends Model
      *
      * @return mixed
      */
-    public function unread($userId=null)
+    public function unread($userId = null)
     {
         if (!$userId) {
             return $this->comments();
@@ -82,7 +81,7 @@ class ForumTopic extends Model
      * @param bool  $formatted  whether to include positive sign if positive
      * @return mixed
      */
-    public function likes($formatted=false)
+    public function likes($formatted = false)
     {
         return $this->firstComment()->likes($formatted);
     }

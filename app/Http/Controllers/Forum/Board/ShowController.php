@@ -6,8 +6,8 @@ namespace App\Http\Controllers\Forum\Board;
  */
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use App\Repositories\ForumBoardRepository;
 use App\Http\Controllers\PageController;
+use App\Queries\Forum\Board\FindBySlug;
 
 /**
  * Display of topics within a board
@@ -16,13 +16,13 @@ class ShowController extends PageController
 {
     /**
      * List forum topics within a particular forum board
-     * @param ForumBoardRepository $boardRepo
-     * @param string               $slug
+     * @param FindBySlug $findBySlug
+     * @param string     $slug
      * @return \Illuminate\View\View
      */
-    public function show(ForumBoardRepository $boardRepo, $slug)
+    public function show(FindBySlug $findBySlug, $slug)
     {
-        $board = $boardRepo->findBySlug($slug);
+        $board = $findBySlug->query($slug);
 
         if (is_null($board)) {
             abort(404);

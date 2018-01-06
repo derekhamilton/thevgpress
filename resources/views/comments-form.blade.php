@@ -12,35 +12,43 @@
 
         {{ Form::hidden('forumTopicId', $forumTopicId, ['id' => 'forumTopicId']) }}
 
-        {{
-            Form::textarea(
-                'comment',
-                '',
-                array(
-                    'id' => 'comment',
-                    'class' => 'form-control',
-                    'placeholder' => 'comment'
+        <div class="form-group row">
+            <div class="col-xs-12">
+            {{
+                Form::textarea(
+                    'comment',
+                    '',
+                    array(
+                        'id' => 'comment',
+                        'class' => 'form-control',
+                        'placeholder' => 'comment'
+                    )
                 )
-            )
-        }}
+            }}
+            </div>
+        </div>
 
-        {{
-            Form::submit(
-                'Submit',
-                array(
-                    'class' => 'btn btn-primary'
+        <div class="form-group row">
+            <div class="col-xs-12">
+            {{
+                Form::submit(
+                    'Submit',
+                    array(
+                        'class' => 'btn btn-primary'
+                    )
                 )
-            )
-        }}
+            }}
 
-        {{
-            Form::button(
-                'Preview',
-                array(
-                    'class' => 'btn btn-info preview'
+            {{
+                Form::button(
+                    'Preview',
+                    array(
+                        'class' => 'btn btn-info preview'
+                    )
                 )
-            )
-        }}
+            }}
+            </div>
+        </div>
 
     {{ Form::close() }}
 @endif

@@ -12,6 +12,8 @@
 */
 
 // public routes
+Route::name('images')->get('/images');
+
 Route::name('home')->get('/', "HomeController@show");
 Route::name('login')->get('login', "Login\ShowController@show");
 Route::name('login/post')->post('login/post', "Login\PostController@post");

@@ -182,6 +182,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\SanitizerProvider::class,
+        DerekHamilton\Glove\Providers\GloveServiceProvider::class,
 
     ],
 
