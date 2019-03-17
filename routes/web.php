@@ -32,6 +32,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::name('comment/post')->post('comment/post', "Comments\PostController@post");
     Route::name('comment/like')->post('comment/like', "Comments\LikeController@post");
     Route::name('comment/preview')->post('comment/preview', "Comments\PreviewController@show");
+
+    Route::group(['middleware' => 'validate'], function () {
+        Route::name('news/post')->post('news/post', "News\PostController@post");
+    });
+
+    Route::name('news/click')->post('news/click', "News\ClickController@click");
 });
 
 // routes with permissions - should all have 'before' => 'auth'

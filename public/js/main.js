@@ -7,6 +7,7 @@ $(document).ready(function()
      */
     $('form.ajax').submit(function()
     {
+        var form = $(this);
         $.post($(this).attr('action'), $(this).serialize())
             .done(function(data)
             {
@@ -31,11 +32,20 @@ $(document).ready(function()
                         else
                             showMessages(messages);
                     }
+
+                    var callback = form.data('callback-success');
+                    if (callback) {
+                        callback(json);
+                    }
                 }
                 catch (e)
                 {
                     // invalid JSON
                     showMessages({messages:{errors:{0:e}}});
+                    var callback = form.data('callback-error');
+                    if (callback) {
+                        callback($data);
+                    }
                 }
             });
 

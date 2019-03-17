@@ -31,6 +31,10 @@
         <script async src="{{ URL::to('/') }}:3000/socket.io/socket.io.js"></script>
     @endif
 
+    <script>
+        var CSRF_TOKEN = '{!! csrf_token() !!}';
+    </script>
+
     @yield ('scripts')
 @overwrite
 

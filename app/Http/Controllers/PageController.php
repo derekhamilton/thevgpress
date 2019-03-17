@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\AuthManager;
 use Illuminate\View\Factory as View;
 use App\Alerts\Alert;
+use App\Models\User;
 use Redirect;
 
 /**
@@ -16,21 +17,19 @@ use Redirect;
  */
 class PageController extends BaseController
 {
-    /** layout view */
     protected $user;
     protected $request;
     protected $alert;
 
     /**
      * default constructor
-     * @param Request   $request
      */
     public function __construct(AuthManager $auth, Request $request, View $view, Alert $alert)
     {
         $this->alert = $alert;
         $this->request = $request;
         $this->middleware(function ($request, $next) use ($auth, $view, $alert) {
-            $this->user = $auth->user();
+            $this->user = $auth->user() ?: new User;
             $view->share('loggedInUser', $this->user);
             $view->share('alert', $alert);
             return $next($request);
@@ -39,12 +38,8 @@ class PageController extends BaseController
 
     /**
      * sends back response dependent on type of request
-     *
-     * @param string    $redirect
-     * @param bool      $refresh
-     * @return string
      */
-    public function response($redirect = null, $refresh = true)
+    public function response(?string $redirect = null, bool $refresh = true): string
     {
         if (!$this->request->isXmlHttpRequest()) {
             // if not by AJAX, gotta send them somewhere
@@ -71,11 +66,11 @@ class PageController extends BaseController
         // includes any feedback messages
         // and instructions on whether to reload the page or
         // to redirect to a different page
-        return response(json_encode(
+        return json_encode(
             array_merge(
                 $messages ?: array(),
                 $merge
             )
-        ));
+        );
     }
 }

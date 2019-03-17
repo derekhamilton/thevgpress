@@ -12,13 +12,10 @@ namespace App\Alerts;
  */
 class Alert
 {
-
-    /** @var Session */
+    /** @var SessionManager */
     protected $session;
+    protected $data = [];
 
-    /**
-     * @param Session   $session
-     */
     public function __construct(SessionManager $session)
     {
         $this->session = $session;
@@ -33,34 +30,27 @@ class Alert
      * For example, errors.errors-comments would look for an
      * element #errors-comments
      * while still being grouped under errors for message purposes
-     *
-     * @param string $type    the type of message (error/success/info)
-     * @param string $message the message
-     * @return void
      */
-    public function add($type, $message)
+    public function add(string $type, string $message): void
     {
         $messages = $this->session->get('reportBag') ?: new ReportBag();
         $messages->add($type, $message);
         $this->session->put('reportBag', $messages);
     }
 
-    /**
-     * @param string $message
-     * @return void
-     */
-    public function success($message)
+    public function success(string $message): void
     {
         $this->add('successes', $message);
     }
 
-    /**
-     * @param string $message
-     * @return void
-     */
-    public function error($message)
+    public function error(string $message): void
     {
         $this->add('errors', $message);
+    }
+
+    public function datum(string $datum): void
+    {
+        $this->data[] = base64_encode($datum);
     }
 
     /**
@@ -129,6 +119,10 @@ class Alert
                 // use the key to maintain consistent structure
                 $return['messages'][$key][$key] = $message;
             }
+        }
+
+        if ($this->data) {
+            $return['data'] = $this->data;
         }
 
         return $return;

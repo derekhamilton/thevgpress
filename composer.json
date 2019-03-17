@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "laravel/framework": "5.5.*",
+        "laravel/framework": "5.8.*",
         "cviebrock/eloquent-sluggable": "^4.1",
         "laravelcollective/html": "^5.3",
         "predis/predis": "^1.1",
@@ -24,7 +24,7 @@
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.7",
+        "phpunit/phpunit": "7.*",
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*",
         "filp/whoops": "~2.0",
@@ -58,8 +58,7 @@
             "php artisan optimize"
         ],
         "post-update-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

@@ -1,4 +1,5 @@
-{!! Form::open(['url' => '', 'id' => 'newsForm', 'class' => 'ajax', 'style' => 'max-width: 600px']) !!}
+{!! Form::open(['url' => route('news/post'), 'id' => 'newsForm', 'class' => 'ajax', 'style' => 'max-width: 600px']) !!}
+    {!! Form::hidden('user_id', $loggedInUser->id) !!}
     <h3>Post News Article</h3>
 
     <div class="form-group row">
@@ -26,7 +27,7 @@
         <div class="col-sm-4">Company</div>
         <div class="col-sm-8">
             <label>
-                {!! Form::radio('company', 'none', true) !!}
+                {!! Form::radio('company', '', true) !!}
                 <span class="none">None</span>
             </label>
             <label>
@@ -72,10 +73,10 @@
     </div>
 
     <div class="form-group row">
-        <div class="col-sm-4">Big News?</div>
+        <div class="col-sm-4"><label for="bigNews">Big News?</label></div>
         <div class="col-sm-8">
             <label>
-                {!! Form::checkbox('bigNews', 1) !!}
+                {!! Form::checkbox('bigNews', 1, null, ['id' => 'bigNews']) !!}
             </label>
         </div>
     </div>

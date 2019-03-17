@@ -16,6 +16,8 @@ class Comment extends Model
      */
     protected $table = 'comments';
 
+    protected $fillable = ['id', 'user_id', 'forum_topic_id', 'comment'];
+
     /**
      * User who created the comment
      *
@@ -129,7 +131,7 @@ class Comment extends Model
     {
         $rules = array(
             'user_id' => 'numeric|required',
-            'forum_topic_id' => 'numeric',
+            'forum_topic_id' => 'numeric|nullable',
             'comment'    => 'required'
         );
 

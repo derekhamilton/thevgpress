@@ -26,6 +26,11 @@ a, a:hover
     color: $mainLinkColor;
 }
 
+label
+{
+    font-weight: normal;
+}
+
 #content
 {
     color: $mainTextColor;
