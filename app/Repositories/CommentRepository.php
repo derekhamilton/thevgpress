@@ -1,8 +1,6 @@
 <?php
 namespace App\Repositories;
 
-use App\Models\Comment;
-
 class CommentRepository extends AbstractEloquentRepository implements RepositoryInterface
 {
     protected $modelClassName = \App\Models\Comment::class;

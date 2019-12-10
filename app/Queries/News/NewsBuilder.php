@@ -2,18 +2,18 @@
 namespace App\Queries\News;
 
 use App\Models\News;
-use Illuminate\Database\Eloquent\Builder;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class NewsBuilder
 {
     public function query($startDate, $endDate): Builder
     {
         return News::select(
-                'news.*',
-                'users.username',
-                DB::raw("DATE_FORMAT(news.created_at, '%a') AS day")
-            )
+            'news.*',
+            'users.username',
+            DB::raw("DATE_FORMAT(news.created_at, '%a') AS day")
+        )
             ->join('users', 'users.id', '=', 'news.user_id')
             ->whereBetween('news.created_at', [$startDate, $endDate])
             ->orderBy(DB::raw("DATE_FORMAT(news.created_at, '%Y-%m-%d')"));

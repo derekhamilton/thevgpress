@@ -1,11 +1,12 @@
+@php $route = request()->route()->getName(); @endphp
 <ul class="nav navbar-nav">
-    <li class="active">
+    <li @if ($route === 'home') class="active" @endif>
         <a href="{{ URL::to('/') }}">Home</a>
     </li>
-    <li>
+    <li @if (in_array($route, ['news-current', 'news-archived'])) class="active" @endif>
         <a href="{{ URL::to('news') }}">News</a>
     </li>
-    <li class="dropdown">
+    <li class="dropdown @if (in_array($route, ['forum-board', 'forum-topic'])) active @endif">
         <a href="#"
             class="dropdown-toggle"
             data-toggle="dropdown"
@@ -36,11 +37,17 @@
             </li>
         </ul>
     </li>
-    <li><a href="{{ URL::to('forum/reviews') }}">Reviews</a></li>
-    <li><a href="http://thepressroompodcast.com">Podcast</a></li>
+    <li @if ($route === "reviews") class="active" @endif>
+        <a href="{{ URL::to('forum/reviews') }}">Reviews</a>
+    </li>
+    <li>
+        <a href="http://thepressroompodcast.com">Podcast</a>
+    </li>
 
     @if ($loggedInUser = Auth::user())
-        <li><a href="{{ URL::to('users') }}/{{ $loggedInUser->username }}">Profile</a></li>
+        <li @if ($route === 'profile') class="active" @endif>
+            <a href="{{ URL::to('users') }}/{{ $loggedInUser->username }}">Profile</a>
+        </li>
         <li>
             <a href="{{ URL::to('chat') }}" class="chat">
                 Chat

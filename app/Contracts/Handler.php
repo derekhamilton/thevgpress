@@ -7,6 +7,7 @@ interface Handler
 {
     /**
      * Handle an incoming request
+     * @param Request $request
      */
     public function handle(Request $request) : \Illuminate\View\View;
 }

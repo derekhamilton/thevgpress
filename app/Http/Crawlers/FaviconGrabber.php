@@ -11,9 +11,9 @@ class FaviconGrabber implements Grabber
         $domain = parse_url($url, PHP_URL_HOST);
 
         $context = stream_context_create([
-            'http' => array(
+            'http' => [
                 'timeout' => 3      // Timeout in seconds
-             )
+            ]
         ]);
 
         $html = file_get_contents($url, 0, $context);

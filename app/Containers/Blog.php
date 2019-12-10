@@ -18,11 +18,11 @@ class Blog
         string $content,
         string $createdAt
     ) {
-        $this->topicId = $topicId;
-        $this->userId = $userId;
-        $this->title = $title;
-        $this->slug = $slug;
-        $this->content = $content;
+        $this->topicId   = $topicId;
+        $this->userId    = $userId;
+        $this->title     = $title;
+        $this->slug      = $slug;
+        $this->content   = $content;
         $this->createdAt = $createdAt;
     }
 

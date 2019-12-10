@@ -3,7 +3,6 @@ namespace App\Queries\Forum\Topic;
 
 use App\Models\ForumTopic;
 use App\Models\User;
-use App\Queries\Forum\Topic\FirstOrNewTopicRead;
 
 /**
  * Save a topic as having been viewed by the user
@@ -23,7 +22,7 @@ class MarkAsViewed
 
     public function query(User $user, ForumTopic $topic, int $page = null, int $perPage = null) : void
     {
-        $topicRead = $this->newTopicRead->query($user->id, $topic->id);
+        $topicRead          = $this->newTopicRead->query($user->id, $topic->id);
         $lastCommentVisible = $topic->lastCommentVisible($page, $perPage);
 
         if ($lastCommentVisible > $topicRead->viewed) {

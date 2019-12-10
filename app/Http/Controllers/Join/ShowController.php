@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Join;
  * Join Page controller
  */
 
-use Illuminate\Http\Request;
-use Illuminate\Auth\AuthManager;
 use App\Http\Controllers\PageController;
 use App\Repositories\UserRepository;
 
@@ -22,9 +20,9 @@ final class ShowController extends PageController
      */
     public function show(UserRepository $userRepo)
     {
-        $username = 'testing';
-        $password = $userRepo->hashPassword('testing1');
-        $credentials = array('username' => $username, 'password' => $password);
+        $username    = 'testing';
+        $password    = $userRepo->hashPassword('testing1');
+        $credentials = ['username' => $username, 'password' => $password];
         return view('join');
     }
 }

@@ -1,10 +1,10 @@
 <?php
 namespace App\Repositories;
 
-use App\Models\ForumTopic;
-use App\Models\User;
-
 use App;
+use App\Models\ForumTopic;
+
+use App\Models\User;
 
 class ForumTopicRepository extends AbstractEloquentRepository implements RepositoryInterface
 {
@@ -21,8 +21,8 @@ class ForumTopicRepository extends AbstractEloquentRepository implements Reposit
             return;
         }
 
-        $topicReadRepo = App::make(ForumTopicReadRepository::class);
-        $topicRead = $topicReadRepo->firstOrNewByIds($user->id, $topic->id);
+        $topicReadRepo      = App::make(ForumTopicReadRepository::class);
+        $topicRead          = $topicReadRepo->firstOrNewByIds($user->id, $topic->id);
         $lastCommentVisible = $topic->lastCommentVisible($page, $perPage);
 
         if ($lastCommentVisible > $topicRead->viewed) {

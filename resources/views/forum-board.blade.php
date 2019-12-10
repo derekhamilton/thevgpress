@@ -7,6 +7,10 @@
 @endsection
 
 @section ('content')
+<div>
+    <a href="#" class="btn btn-large btn-default">New Topic</a>
+</div>
+
 <table class="table table-striped">
 
     <thead>

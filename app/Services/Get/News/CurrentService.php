@@ -4,8 +4,8 @@ namespace App\Services\Get\News;
 use App\Queries\Comments\CurrentNewsComments;
 use App\Queries\News\CurrentNewsByClicks;
 use App\Queries\News\CurrentNewsByDate;
-use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class CurrentService
 {
@@ -20,11 +20,12 @@ class CurrentService
     ) {
         $this->currentNewsComments = $currentNewsComments;
         $this->currentNewsByClicks = $currentNewsByClicks;
-        $this->currentNewsByDate = $currentNewsByDate;
+        $this->currentNewsByDate   = $currentNewsByDate;
     }
 
     /**
      * @return Collection
+     * @param Request $request
      */
     public function get(Request $request)
     {

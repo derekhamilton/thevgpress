@@ -9,6 +9,8 @@ class CurrentNewsComments
 {
     /**
      * Get current news stories
+     * @param null|mixed $startDate
+     * @param null|mixed $endDate
      */
     public function query($startDate = null, $endDate = null): Collection
     {

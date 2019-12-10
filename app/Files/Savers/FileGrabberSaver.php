@@ -1,8 +1,8 @@
 <?php
 namespace App\Files\Savers;
 
-use Illuminate\Config\Repository as Configuration;
 use App\Contracts\Http\Crawlers\Grabber;
+use Illuminate\Config\Repository as Configuration;
 
 class FileGrabberSaver
 {
@@ -13,11 +13,12 @@ class FileGrabberSaver
     private $grabber;
 
     /**
-     * @param Grabber $grabber
+     * @param Grabber       $grabber
+     * @param Configuration $config
      */
     public function __construct(Configuration $config, Grabber $grabber)
     {
-        $this->dir = $config->get('app.filesDir');
+        $this->dir     = $config->get('app.filesDir');
         $this->grabber = $grabber;
     }
 
@@ -27,8 +28,8 @@ class FileGrabberSaver
      */
     public function save($url)
     {
-        $domain = parse_url($url, PHP_URL_HOST);
-        $filePath = "{$this->dir}/$domain.ico";
+        $domain       = parse_url($url, PHP_URL_HOST);
+        $filePath     = "{$this->dir}/$domain.ico";
         $failFilePath = "{$this->dir}/$domain.fail";
 
         if (file_exists($filePath)) {

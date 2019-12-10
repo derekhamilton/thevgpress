@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Middleware;
 
-use App\Factories\Validation\FormValidatorFactory;
 use App\Alerts\Alert;
+use App\Factories\Validation\FormValidatorFactory;
 use Closure;
 
 class Validate
@@ -14,7 +14,7 @@ class Validate
     public function __construct(FormValidatorFactory $factory, Alert $alert)
     {
         $this->factory = $factory;
-        $this->alert = $alert;
+        $this->alert   = $alert;
     }
 
     public function handle($request, Closure $next, $guard = null)

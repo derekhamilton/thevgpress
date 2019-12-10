@@ -1,13 +1,13 @@
 <?php
 namespace App\Handlers\Forum\Topic;
 
-use Illuminate\Contracts\Auth\Guard as Authentication;
-use Illuminate\Http\Request;
-use Illuminate\Config\Repository as Configuration;
 use App\Contracts\Handler;
 use App\Exceptions\Forum\Topic\TopicNotFoundException;
 use App\Queries\Forum\Topic\FindBySlug;
 use App\Queries\Forum\Topic\MarkAsViewed;
+use Illuminate\Config\Repository as Configuration;
+use Illuminate\Contracts\Auth\Guard as Authentication;
+use Illuminate\Http\Request;
 
 class ShowHandler implements Handler
 {
@@ -26,17 +26,18 @@ class ShowHandler implements Handler
     /**
      * List comments within a given forum topic
      * @throws TopicNotFoundException
+     * @param Request $request
      */
     public function handle(Request $request) : \Illuminate\View\View
     {
         $topicSlug = $request->route('topic');
-        $topic = $this->findBySlug->query($topicSlug);
+        $topic     = $this->findBySlug->query($topicSlug);
 
         if (is_null($topic)) {
             throw new TopicNotFoundException($topicSlug);
         }
 
-        $page = $request->input('page');
+        $page    = $request->input('page');
         $perPage = $this->config->get('site.comments_per_page');
 
         if ($this->user) {
@@ -48,7 +49,7 @@ class ShowHandler implements Handler
         return view(
             'forum-topic',
             [
-                'topic' => $topic,
+                'topic'    => $topic,
                 'comments' => $comments
             ]
         );

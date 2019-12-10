@@ -21,6 +21,7 @@ Route::name('logout')->any('logout', "Login\LogoutController@logout");
 Route::name('join')->get('join', "Join\ShowController@show");
 Route::name('join/post')->post('join/post', "Join\PostController@post");
 Route::name('forum-board')->get('forum/{board}', "Forum\Board\ShowController@show");
+Route::name('forum-board')->get('forum/{board}/new', "Forum\Board\New\ShowController@show");
 Route::name('forum-topic')->get('forum/{board}/{topic}', "Forum\Topic\ShowController@show");
 Route::name('news-current')->get('news', "News\CurrentController@show");
 Route::name('news-archived')->get('news/{date}', "News\ArchivedController@show");
@@ -43,17 +44,17 @@ Route::group(['middleware' => 'auth'], function () {
 // routes with permissions - should all have 'before' => 'auth'
 Route::any(
     'chat',
-    array('before' => 'auth:TEST', 'uses' =>"ChatController@chat")
+    ['before' => 'auth:TEST', 'uses' => "ChatController@chat"]
 );
 Route::any(
     'chat/{username}',
-    array('before' => 'auth:TEST', "ChatController@chat")
+    ['before' => 'auth:TEST', "ChatController@chat"]
 );
 Route::post(
     'chatPost',
-    array('before' => 'auth:TEST', "ChatController@chatPost")
+    ['before' => 'auth:TEST', "ChatController@chatPost"]
 );
 Route::post(
     'messages/{username}',
-    array('before' => 'auth:TEST', "ChatController@messages")
+    ['before' => 'auth:TEST', "ChatController@messages"]
 );
