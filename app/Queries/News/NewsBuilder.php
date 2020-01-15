@@ -14,8 +14,8 @@ class NewsBuilder
             'users.username',
             DB::raw("DATE_FORMAT(news.created_at, '%a') AS day")
         )
-            ->join('users', 'users.id', '=', 'news.user_id')
-            ->whereBetween('news.created_at', [$startDate, $endDate])
-            ->orderBy(DB::raw("DATE_FORMAT(news.created_at, '%Y-%m-%d')"));
+        ->join('users', 'users.id', '=', 'news.user_id')
+        ->whereBetween('news.created_at', [$startDate, $endDate])
+        ->orderBy(DB::raw("DATE_FORMAT(news.created_at, '%Y-%m-%d')"));
     }
 }

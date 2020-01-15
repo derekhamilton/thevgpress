@@ -31,8 +31,9 @@ class UserService
         $blogs    = $this->blogsByUserId->query($user->id);
 
         return collect([
-            'user' => $user,
-            'blog' => $blog,
+            'user'  => $user,
+            'blog'  => $blog,
+            'blogs' => $blogs,
         ]);
     }
 }

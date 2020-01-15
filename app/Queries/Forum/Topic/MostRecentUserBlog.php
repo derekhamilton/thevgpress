@@ -24,7 +24,7 @@ class MostRecentUserBlog
         ->orderBy('comments.created_at', 'desc')
         ->first();
 
-        if (is_null($comment)) {
+        if (!$comment) {
             return null;
         }
 

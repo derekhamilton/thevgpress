@@ -3,7 +3,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 /**
  * App\Models\ForumTopic
  *
@@ -118,7 +117,13 @@ class ForumTopic extends Model
      */
     public function likes($formatted = false)
     {
-        return $this->firstComment()->likes($formatted);
+        $firstComment = $this->firstComment();
+
+        if (!$firstComment) {
+            return 0;
+        }
+
+        return $firstComment->likes($formatted);
     }
 
     /**
