@@ -2,7 +2,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\ForumTopic
@@ -51,11 +51,11 @@ class ForumTopic extends Model
     /**
      * User who created the topic
      *
-     * @return User
+     * @return BelongsTo
      */
     public function author()
     {
-        return $this->belongsTo('App\Models\User', 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
@@ -118,7 +118,13 @@ class ForumTopic extends Model
      */
     public function likes($formatted = false)
     {
-        return $this->firstComment()->likes($formatted);
+        $firstComment = $this->firstComment();
+
+        if (!$firstComment) {
+            return 0;
+        }
+
+        return $firstComment->likes($formatted);
     }
 
     /**

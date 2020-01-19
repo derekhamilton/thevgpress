@@ -21,4 +21,6 @@ class Friend extends Eloquent
      * @var string
      */
     protected $table = 'friends';
+
+    public $timestamps = false;
 }

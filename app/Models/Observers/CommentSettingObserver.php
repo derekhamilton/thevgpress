@@ -10,8 +10,10 @@ class CommentSettingObserver
     public function saving(CommentSetting $setting)
     {
         $user = Auth::user();
-        RedisL::hdel('likes', $setting->comment_id);
-        RedisL::hdel('liked-by', "{$setting->comment_id}:{$user->id}");
-        return true;
+        if ($user) {
+            RedisL::hdel('likes', $setting->comment_id);
+            RedisL::hdel('liked-by', "{$setting->comment_id}:{$user->id}");
+            return true;
+        }
     }
 }

@@ -25,7 +25,7 @@
     </thead>
 
     <tbody>
-    @foreach ($board->topics as $topic)
+    @foreach ($board->topics()->paginate() as $topic)
 
         <tr class="@if ($topic->stickied) stickied @endif">
             <td class="likes">{{ $topic->likes(true) }}</td>

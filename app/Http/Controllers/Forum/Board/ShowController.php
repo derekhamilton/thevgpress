@@ -24,7 +24,7 @@ class ShowController extends PageController
     {
         $board = $findBySlug->query($slug);
 
-        if (is_null($board)) {
+        if (!$board) {
             abort(404);
         }
 
