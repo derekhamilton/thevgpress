@@ -1,10 +1,10 @@
 <?php
 namespace App\Repositories;
 
-use Illuminate\Support\Collection;
 use App\Models\News;
 use DateTime;
 use DB;
+use Illuminate\Support\Collection;
 
 class NewsRepository extends AbstractEloquentRepository implements RepositoryInterface
 {
@@ -12,10 +12,11 @@ class NewsRepository extends AbstractEloquentRepository implements RepositoryInt
 
     /**
      * @return Collection|News[]
+     * @param mixed $order
      */
     private function currentNews($order)
     {
-        $date = new DateTime;
+        $date    = new DateTime;
         $endDate = $date->format('Y-m-d H:i:s');
         $date->modify('-4 days');
         $startDate = $date->format('Y-m-d 00:00:00');
@@ -97,10 +98,10 @@ class NewsRepository extends AbstractEloquentRepository implements RepositoryInt
     private function newsBuilder($startDate, $endDate)
     {
         return $this->model->select(
-                'news.*',
-                'users.username',
-                DB::raw("DATE_FORMAT(news.created_at, '%a') AS day")
-            )
+            'news.*',
+            'users.username',
+            DB::raw("DATE_FORMAT(news.created_at, '%a') AS day")
+        )
             ->join('users', 'users.id', '=', 'news.user_id')
             ->whereBetween('news.created_at', [$startDate, $endDate])
             ->orderBy(DB::raw("DATE_FORMAT(news.created_at, '%Y-%m-%d')"));

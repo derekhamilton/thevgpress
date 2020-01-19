@@ -8,6 +8,7 @@ class UserRepository extends AbstractEloquentRepository implements RepositoryInt
     /**
      * Legacy function for hashing passwords
      * @return string
+     * @param mixed $password
      */
     public function hashPassword($password)
     {
@@ -16,9 +17,9 @@ class UserRepository extends AbstractEloquentRepository implements RepositoryInt
 
     public function create($input)
     {
-        $user = new $this->modelClassName($input);
+        $user                        = new $this->modelClassName($input);
         $user->password_confirmation = $input['password_confirmation'];
-        $success = $user->save();
+        $success                     = $user->save();
 
         return $success ? $user : false;
     }

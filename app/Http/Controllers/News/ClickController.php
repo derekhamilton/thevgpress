@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Controllers\News;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Queries\News\ClickNews;
+use Illuminate\Http\Request;
 
 final class ClickController extends BaseController
 {

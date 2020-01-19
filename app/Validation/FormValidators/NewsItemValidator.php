@@ -1,15 +1,15 @@
 <?php
 namespace App\Validation\FormValidators;
 
+use App\Contracts\Validation\FormValidator;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Factory as ValidationFactory;
-use App\Contracts\Validation\FormValidator;
 
 class NewsItemValidator implements FormValidator
 {
     protected $errors = [];
 
-    public function  __construct(ValidationFactory $factory)
+    public function __construct(ValidationFactory $factory)
     {
         $this->factory = $factory;
     }
@@ -28,7 +28,7 @@ class NewsItemValidator implements FormValidator
     {
         $rules = [
             'title' => 'required',
-            'link' => 'required'
+            'link'  => 'required'
         ];
 
         $validator = $this->factory->make($request->all(), $rules);

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\News;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\PageController;
 use App\Services\Save\News\SaveService;
-use App\Alerts\Alert;
+use Illuminate\Http\Request;
 
 final class PostController extends PageController
 {

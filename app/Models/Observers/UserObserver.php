@@ -1,11 +1,9 @@
 <?php
 namespace App\Models\Observers;
 
-use Illuminate\Contracts\Hashing\Hasher;
-use App\Models\User;
-use App\Repositories\UserRepository;
 use App\Alerts\Alert;
-use Hash;
+use App\Repositories\UserRepository;
+use Illuminate\Contracts\Hashing\Hasher;
 
 class UserObserver
 {
@@ -15,8 +13,8 @@ class UserObserver
 
     public function __construct(Alert $alert, Hasher $hash, UserRepository $userRepo)
     {
-        $this->alert = $alert;
-        $this->hash = $hash;
+        $this->alert    = $alert;
+        $this->hash     = $hash;
         $this->userRepo = $userRepo;
     }
 
@@ -26,6 +24,7 @@ class UserObserver
 
     public function saving($user)
     {
+        /*
         if (($validate = $user->validate()) === true) {
             if (!$user->id) {
                 $user->password = $this->hash->make($this->userRepo->hashPassword($user->password));
@@ -40,5 +39,6 @@ class UserObserver
             }
             return false;
         }
+         */
     }
 }

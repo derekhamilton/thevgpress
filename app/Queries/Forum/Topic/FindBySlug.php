@@ -10,6 +10,7 @@ class FindBySlug
 {
     /**
      * @return ForumTopic|null
+     * @param string $slug
      */
     public function query(string $slug)
     {

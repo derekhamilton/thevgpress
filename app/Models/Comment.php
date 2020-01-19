@@ -1,11 +1,34 @@
 <?php
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Auth;
+use Illuminate\Database\Eloquent\Model;
 use RedisL;
 use Validator;
 
+/**
+ * App\Models\Comment
+ *
+ * @property int                        $id
+ * @property int                        $user_id
+ * @property int|null                   $forum_topic_id
+ * @property string                     $comment
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property string|null                $deleted_at
+ * @property-read \App\Models\User $author
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereForumTopicId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Comment extends Model
 {
 
@@ -31,10 +54,10 @@ class Comment extends Model
     /**
      * Number of likes for the comment
      *
-     * @param bool  $formatted
+     * @param bool $formatted
      * @return mixed
      */
-    public function likes($formatted=false)
+    public function likes($formatted = false)
     {
         $likes = RedisL::hget('likes', $this->id);
         if (!is_null($likes)) {
@@ -50,7 +73,7 @@ class Comment extends Model
     /**
      * Format like count for output with positive sign
      *
-     * @param int   $likes
+     * @param int $likes
      * @return string
      */
     private function formatLikes($likes)
@@ -65,7 +88,7 @@ class Comment extends Model
     {
         $user = Auth::user();
         RedisL::hset('liked-by', "{$this->id}:{$user->id}", 1);
-        $setting = CommentSetting::get(Auth::user()->id, $this->id);
+        $setting        = CommentSetting::get(Auth::user()->id, $this->id);
         $setting->liked = 1;
         $setting->save();
     }
@@ -77,7 +100,7 @@ class Comment extends Model
     {
         $user = Auth::user();
         RedisL::hset('liked-by', "{$this->id}:{$user->id}", 0);
-        $setting = CommentSetting::get(Auth::user()->id, $this->id);
+        $setting        = CommentSetting::get(Auth::user()->id, $this->id);
         $setting->liked = 0;
         $setting->save();
     }
@@ -85,7 +108,7 @@ class Comment extends Model
     /**
      * If a comment is liked by a particular user
      *
-     * @param int   $userId
+     * @param int $userId
      * @return bool
      */
     public function likedBy($userId)
@@ -103,7 +126,7 @@ class Comment extends Model
             return false;
         }
 
-        $likedBy = intval($setting->liked) === 1;
+        $likedBy = (int)($setting->liked) === 1;
         RedisL::hset('liked-by', "{$this->id}:$userId", $likedBy);
         return $likedBy;
     }
@@ -111,15 +134,15 @@ class Comment extends Model
     /**
      * Create a new comment
      *
-     * @param string    $text
-     * @param id        $forumTopicId
+     * @param string $text
+     * @param id     $forumTopicId
      */
-    public static function add($text, $forumTopicId=null)
+    public static function add($text, $forumTopicId = null)
     {
-        $comment = new Comment;
-        $comment->user_id = Auth::user()->id;
+        $comment                 = new Comment;
+        $comment->user_id        = Auth::user()->id;
         $comment->forum_topic_id = $forumTopicId ?: null;
-        $comment->comment = $text;
+        $comment->comment        = $text;
         $comment->save();
     }
 
@@ -129,11 +152,11 @@ class Comment extends Model
      */
     public function validate()
     {
-        $rules = array(
-            'user_id' => 'numeric|required',
+        $rules = [
+            'user_id'        => 'numeric|required',
             'forum_topic_id' => 'numeric|nullable',
-            'comment'    => 'required'
-        );
+            'comment'        => 'required'
+        ];
 
         $data = $this->toArray();
 

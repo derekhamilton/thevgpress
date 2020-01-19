@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use App\Contracts\Html\Sanitizer;
 use App\Html\Sanitizers\HtmlPurifier;
+use Illuminate\Support\ServiceProvider;
 
 class SanitizerProvider extends ServiceProvider
 {

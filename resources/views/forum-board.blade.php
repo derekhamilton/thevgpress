@@ -7,6 +7,10 @@
 @endsection
 
 @section ('content')
+<div>
+    <a href="#" class="btn btn-large btn-default">New Topic</a>
+</div>
+
 <table class="table table-striped">
 
     <thead>
@@ -21,7 +25,7 @@
     </thead>
 
     <tbody>
-    @foreach ($board->topics as $topic)
+    @foreach ($board->topics()->paginate() as $topic)
 
         <tr class="@if ($topic->stickied) stickied @endif">
             <td class="likes">{{ $topic->likes(true) }}</td>

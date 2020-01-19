@@ -1,8 +1,8 @@
 <?php
 namespace App\Factories;
 
-use Illuminate\Contracts\Foundation\Application;
 use App\Exceptions\Factories\UnknownDriverException;
+use Illuminate\Contracts\Foundation\Application;
 
 abstract class AbstractDriverFactory
 {

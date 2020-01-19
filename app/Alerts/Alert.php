@@ -30,6 +30,8 @@ class Alert
      * For example, errors.errors-comments would look for an
      * element #errors-comments
      * while still being grouped under errors for message purposes
+     * @param string $type
+     * @param string $message
      */
     public function add(string $type, string $message): void
     {
@@ -78,7 +80,7 @@ class Alert
 
     /**
      * true/false if there are message of the given type
-     * @param string    $type
+     * @param string $type
      * @return bool
      */
     public function has($type)
@@ -95,7 +97,7 @@ class Alert
      * array ( [type] => array ( [target] => array ( [messages] ) ) )
      * where target is used for the target element ID to place the messages.
      *
-     * @param bool      $clear  whether to delete messages after retrieving
+     * @param bool $clear whether to delete messages after retrieving
      * @return mixed    array or json string
      */
     public function all($clear = true)
@@ -109,10 +111,10 @@ class Alert
             return null;
         }
 
-        $return = array();
+        $return = [];
         foreach ($messages->toArray() as $key => $message) {
             if (strpos($key, '.') !== false) {
-                list($type, $target) = explode('.', $key);
+                list($type, $target)                = explode('.', $key);
                 $return['messages'][$type][$target] = $message;
             } else {
                 // if no target is specified,

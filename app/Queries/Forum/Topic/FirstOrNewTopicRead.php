@@ -11,7 +11,7 @@ class FirstOrNewTopicRead
     public function query(int $userId, int $topicId) : ForumTopicRead
     {
         return ForumTopicRead::firstOrNew([
-            'user_id' => $userId,
+            'user_id'        => $userId,
             'forum_topic_id' => $topicId
         ]);
     }

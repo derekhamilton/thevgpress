@@ -1,9 +1,9 @@
 <?php
 namespace App\Services\Save\Comments;
 
-use Illuminate\Http\Request;
-use App\Queries\Comments\SaveComment;
 use App\Models\Comment;
+use App\Queries\Comments\SaveComment;
+use Illuminate\Http\Request;
 
 final class SaveService
 {

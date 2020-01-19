@@ -15,15 +15,18 @@ class SaveComment
 
     /**
      * Save comment submitted via submission form.
+     * @param string $text
+     * @param ?int   $forumTopicId
+     * @param ?int   $id
      */
     public function query(string $text, ?int $forumTopicId = null, ?int $id = null): Comment
     {
         return Comment::updateOrCreate(
             ['id' => $id],
             [
-                'user_id' => $this->auth->user()->id,
+                'user_id'        => $this->auth->user()->id,
                 'forum_topic_id' => $forumTopicId,
-                'comment' => $text,
+                'comment'        => $text,
             ]
         );
     }

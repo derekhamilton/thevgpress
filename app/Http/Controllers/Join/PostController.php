@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Join;
  * Join Post controller
  */
 
-use Illuminate\Http\Request;
-use Illuminate\Auth\AuthManager;
 use App\Http\Controllers\PageController;
 use App\Repositories\UserRepository;
+use Illuminate\Auth\AuthManager;
+use Illuminate\Http\Request;
 
 /**
  * Registration form for new users

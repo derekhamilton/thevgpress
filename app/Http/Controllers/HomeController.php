@@ -1,12 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use App\Models\ForumBoard;
+use Illuminate\View\View;
 
 class HomeController extends PageController
 {
-    public function show()
+    public function show(): View
     {
         return view('index');
     }

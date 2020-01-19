@@ -7,6 +7,7 @@ final class ClickNews
 {
     /**
      * Increment the click counter for a news item.
+     * @param int $id
      */
     public function query(int $id): int
     {
