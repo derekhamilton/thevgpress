@@ -24,6 +24,7 @@ class UserObserver
 
     public function saving($user)
     {
+        /*
         if (($validate = $user->validate()) === true) {
             if (!$user->id) {
                 $user->password = $this->hash->make($this->userRepo->hashPassword($user->password));
@@ -38,5 +39,6 @@ class UserObserver
             }
             return false;
         }
+         */
     }
 }

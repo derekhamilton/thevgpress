@@ -10,6 +10,7 @@ class CommentObserver
 {
     public function creating(Comment $comment)
     {
+        /*
         if (($validate = $comment->validate()) === true) {
             return true;
         }
@@ -20,13 +21,16 @@ class CommentObserver
             }
         }
         return false;
+         */
     }
 
     public function saving(Comment $comment)
     {
         $user = Auth::user();
-        RedisL::hdel('likes', $comment->id);
-        RedisL::hdel('liked-by', "{$comment->id}:{$user->id}");
-        return $comment->validate() === true;
+        if ($user) {
+            RedisL::hdel('likes', $comment->id);
+            RedisL::hdel('liked-by', "{$comment->id}:{$user->id}");
+            return $comment->validate() === true;
+        }
     }
 }

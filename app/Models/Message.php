@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int                        $user_id_receiver
  * @property string                     $title
  * @property string                     $message
+ * @property Carbon|null                $read_at
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
  * @property string|null                $sender_deleted_at

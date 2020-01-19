@@ -29,7 +29,8 @@
         "symfony/dom-crawler": "3.1.*",
         "filp/whoops": "~2.0",
         "barryvdh/laravel-debugbar": "^3.1",
-        "barryvdh/laravel-ide-helper": "^2.6"
+        "barryvdh/laravel-ide-helper": "^2.6",
+        "vimeo/psalm": "^3.8"
     },
     "autoload": {
         "classmap": [
